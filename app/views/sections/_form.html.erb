@@ -26,10 +26,14 @@
     <%= form.text_field :timeslot %>
   </div>
 
-  <div>
-    <%= form.label :subject_id, style: "display: block" %>
-    <%= form.text_field :subject_id %>
-  </div>
+<div>
+  <%= form.label :subject_id, "Subject", style: "display: block" %>
+  <%= form.collection_select :subject_id,
+      Subject.all,
+      :id,
+      :name,
+      prompt: "Select a subject" %>
+</div>
 
   <div>
     <%= form.submit %>
