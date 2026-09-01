@@ -2,6 +2,52 @@
 
 <%= render @subject %>
 
+<h2>Sections</h2>
+
+<% @subject.sections.each do |section| %>
+  <h3><%= section.name %></h3>
+
+  <p>
+    <strong>Room:</strong>
+    <%= section.room %>
+  </p>
+
+  <p>
+    <strong>Timeslot:</strong>
+    <%= section.timeslot %>
+  </p>
+
+  <p>
+    <strong>Teacher:</strong>
+    <%= @subject.teacher.name %>
+  </p>
+
+  <% if section.students.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Year Level</th>
+          <th>Program</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% section.students.each do |student| %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.year_level %></td>
+            <td><%= student.program %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No students in this section.</p>
+  <% end %>
+
+<% end %>
+
 <div>
   <%= link_to "Edit this subject", edit_subject_path(@subject) %> |
   <%= link_to "Back to subjects", subjects_path %>
